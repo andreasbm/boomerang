@@ -1,0 +1,27 @@
+{
+	"name": "@appnest/web-state",
+	"version": "0.0.0",
+	"scripts": {
+		"b:dev": "webpack --mode=development --config src/demo/webpack.config.js",
+		"b:prod": "webpack --mode=production --optimize-minimize --config src/demo/webpack.config.js",
+		"s": "node_modules/.bin/webpack-dev-server --open --hot --inline --config src/demo/webpack.config.js --mode=development",
+		"start": "npm run s",
+		"ncu": "ncu -u -a && npm update && npm install",
+		"b:lib": "node build.js --harmony --experimental-modules",
+		"bump:patch": "cd src/lib && npm version patch && cd ../.. && git stash && npm version patch && git stash apply && git add . && git commit --no-edit --amend --no-verify",
+		"bump:minor": "cd src/lib && npm version minor && cd ../.. && git stash && npm version minor && git stash apply && git add . && git commit --no-edit --amend --no-verify",
+		"bump:major": "cd src/lib && npm version major && cd ../.. && git stash && npm version major && git stash apply && git add . && git commit --no-edit --amend --no-verify",
+		"publish": "cd dist && npm publish --access=public && cd ..",
+		"publish:patch": "npm run bump:patch && git push && npm run b:lib && npm run publish",
+		"publish:minor": "npm run bump:minor && git push && npm run b:lib && npm run publish",
+		"publish:major": "npm run bump:major && git push && npm run b:lib && npm run publish"
+	},
+	"dependencies": {
+		"@appnest/web-router": "0.0.3",
+		"@polymer/lit-element": "^0.2.2",
+		"lit-html": "^0.9.0"
+	},
+	"devDependencies": {
+		"@appnest/web-config": "0.0.7"
+	}
+}

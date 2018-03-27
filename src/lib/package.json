@@ -1,0 +1,24 @@
+{
+	"name": "@appnest/web-state",
+	"version": "0.0.3",
+	"description": "Simple state management for the web.",
+	"author": "Appnest",
+	"bugs": {
+		"url": "https://github.com/andreasbm/web-state/issues"
+	},
+	"homepage": "https://github.com/andreasbm/web-state#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/andreasbm/web-state.git"
+	},
+	"keywords": [
+		"webapp",
+		"custom",
+		"elements",
+		"web",
+		"component",
+		"state",
+		"events"
+	],
+	"license": "MIT"
+}
