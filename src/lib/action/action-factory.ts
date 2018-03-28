@@ -14,13 +14,13 @@ export interface IActionFactory<Data, Metadata> {
 /**
  * A factory that allows for an IDataAction to be created based on a specified status kind.
  */
-export interface IAsyncActionFactory<Started, Done, Failed, I, M = DefaultActionMetadata> {
+export interface IAsyncActionFactory<ST, SU, FA, IN, DO, ME = DefaultActionMetadata> {
 	kind: ActionKind;
-	started: IActionFactory<Started, M>;
-	failed: IActionFactory<Failed, M>;
-	invalidated: IActionFactory<I, M>;
-	success: IActionFactory<Done, M>;
-	done: IActionFactory<Started, M>;
+	started: IActionFactory<ST, ME>;
+	success: IActionFactory<SU, ME>;
+	failed: IActionFactory<FA, ME>;
+	invalidated: IActionFactory<IN, ME>;
+	done: IActionFactory<DO, ME>;
 }
 
 /**
@@ -30,7 +30,7 @@ export interface IAsyncActionFactory<Started, Done, Failed, I, M = DefaultAction
  * - failed: Error
  * - invalidated: {}
  */
-export type IDefaultAsyncActionFactory <D, M = DefaultActionMetadata> = IAsyncActionFactory<void, D, Error, void, M>;
+export type IDefaultAsyncActionFactory <Data, Metadata = DefaultActionMetadata> = IAsyncActionFactory<void, Data, Error, void, Metadata>;
 
 /**
  * Makes an action factory with a specific kind and status.
@@ -48,33 +48,28 @@ function mkActionFactory<Data, Metadata> (kind: ActionKind, status: ActionStatus
 
 /**
  * Makes an async action factory with a specified kind.
- * M = metadata type
- * S = started and done data type
- * D = done data type
- * F = failed data type
- * I = invalidated data type
  * @param kind
- * @returns {{kind: ActionKind, started: IActionFactory<S>, done: IActionFactory<D>, failed: IActionFactory<F>, invalidated: IActionFactory<I>}}
+ * @returns {{kind: ActionKind, started: IActionFactory<ST>, done: IActionFactory<SU>, failed: IActionFactory<FA>, invalidated: IActionFactory<IN>}}
  */
-export function mkAction<S, D, F, I, M> (kind: ActionKind): IAsyncActionFactory<S, D, F, I, M> {
+export function mkAction<ST, SU, FA, IN, DO, ME> (kind: ActionKind): IAsyncActionFactory<ST, SU, FA, IN, DO, ME> {
 	return {
 		kind: kind,
-		started: mkActionFactory<S, M>(kind, ActionStatusKind.STARTED),
-		success: mkActionFactory<D, M>(kind, ActionStatusKind.SUCCESS),
-		failed: mkActionFactory<F, M>(kind, ActionStatusKind.FAILED),
-		done: mkActionFactory<S, M>(kind, ActionStatusKind.DONE),
-		invalidated: mkActionFactory<I, M>(kind, ActionStatusKind.INVALIDATED)
+		started: mkActionFactory<ST, ME>(kind, ActionStatusKind.STARTED),
+		success: mkActionFactory<SU, ME>(kind, ActionStatusKind.SUCCESS),
+		failed: mkActionFactory<FA, ME>(kind, ActionStatusKind.FAILED),
+		invalidated: mkActionFactory<IN, ME>(kind, ActionStatusKind.INVALIDATED),
+		done: mkActionFactory<DO, ME>(kind, ActionStatusKind.DONE)
 	};
 }
 
 /**
  * Makes a default action factory with a provided kind
  * @param kind
- * @returns {IAsyncActionFactory<{}, D, Error, {}>}
+ * @returns {IAsyncActionFactory<{}, SU, Error, {}>}
  */
-export function mkDefaultAction<D, M = DefaultActionMetadata> (kind?: ActionKind): IDefaultAsyncActionFactory<D> {
+export function mkDefaultAction<SU, ME = DefaultActionMetadata> (kind?: ActionKind): IDefaultAsyncActionFactory<SU> {
 	if (kind == null) kind = Math.random().toString();
-	return mkAction<void, D, Error, void, M>(kind);
+	return mkAction<void, SU, Error, void, void, ME>(kind);
 }
 
 /**
@@ -83,6 +78,6 @@ export function mkDefaultAction<D, M = DefaultActionMetadata> (kind?: ActionKind
  * @param actionFactory
  * @returns {boolean}
  */
-export function isAction<T, U> (action: IAction, actionFactory: IActionFactory<T, U>): action is IDataAction<T, U> {
+export function isAction<Data, Metadata> (action: IAction, actionFactory: IActionFactory<Data, Metadata>): action is IDataAction<Data, Metadata> {
 	return action.kind === actionFactory.kind && action.status === actionFactory.status;
 }

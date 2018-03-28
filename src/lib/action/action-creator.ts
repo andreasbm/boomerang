@@ -12,7 +12,7 @@ export abstract class ActionCreator {
 	 * @param data
 	 * @param metadata
 	 */
-	protected started<S, D, F, I, M> (actionFactory: IAsyncActionFactory<S, D, F, I>, data: S, metadata?: M): void {
+	protected started<ST, SU, FA, IN, DO, ME> (actionFactory: IAsyncActionFactory<ST, SU, FA, IN, DO>, data: ST, metadata?: ME): void {
 		Dispatcher.instance.dispatch(actionFactory.started(data, metadata));
 	}
 
@@ -22,7 +22,7 @@ export abstract class ActionCreator {
 	 * @param data
 	 * @param metadata
 	 */
-	protected done<S, D, F, I, M> (actionFactory: IAsyncActionFactory<S, D, F, I>, data: S, metadata?: M): void {
+	protected done<ST, SU, FA, IN, DO, ME> (actionFactory: IAsyncActionFactory<ST, SU, FA, IN, DO>, data: DO, metadata?: ME): void {
 		Dispatcher.instance.dispatch(actionFactory.done(data, metadata));
 	}
 
@@ -32,7 +32,7 @@ export abstract class ActionCreator {
 	 * @param data
 	 * @param metadata
 	 */
-	protected failed<S, D, F, I, M> (actionFactory: IAsyncActionFactory<S, D, F, I>, data: F, metadata?: M): void {
+	protected failed<ST, SU, FA, IN, DO, ME> (actionFactory: IAsyncActionFactory<ST, SU, FA, IN, DO>, data: FA, metadata?: ME): void {
 		Dispatcher.instance.dispatch(actionFactory.failed(data, metadata));
 	}
 
@@ -42,7 +42,7 @@ export abstract class ActionCreator {
 	 * @param data
 	 * @param metadata
 	 */
-	protected invaliated<S, D, F, I, M> (actionFactory: IAsyncActionFactory<S, D, F, I>, data: I, metadata?: M): void {
+	protected invaliated<ST, SU, FA, IN, DO, ME> (actionFactory: IAsyncActionFactory<ST, SU, FA, IN, DO>, data: IN, metadata?: ME): void {
 		Dispatcher.instance.dispatch(actionFactory.invalidated(data, metadata));
 	}
 
@@ -52,7 +52,7 @@ export abstract class ActionCreator {
 	 * @param data
 	 * @param metadata
 	 */
-	protected success<S, D, F, I, M> (actionFactory: IAsyncActionFactory<S, D, F, I>, data: D, metadata?: M): void {
+	protected success<ST, SU, FA, IN, DO, ME> (actionFactory: IAsyncActionFactory<ST, SU, FA, IN, DO>, data: SU, metadata?: ME): void {
 		Dispatcher.instance.dispatch(actionFactory.success(data, metadata));
 	}
 
@@ -64,7 +64,7 @@ export abstract class ActionCreator {
 	 * @param bodyFunction
 	 * @param metadata
 	 */
-	protected tryCatch<D, M> (actionFactory: IDefaultAsyncActionFactory<D, M>, bodyFunction: () => Promise<D>, metadata?: M): void {
+	protected tryCatch<Data, Metadata> (actionFactory: IDefaultAsyncActionFactory<Data, Metadata>, bodyFunction: () => Promise<Data>, metadata?: Metadata): void {
 		(async () => {
 			this.started(actionFactory, undefined, metadata);
 
