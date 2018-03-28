@@ -2,8 +2,7 @@ import { Dispatcher } from "../";
 import { IAsyncActionFactory, IDefaultAsyncActionFactory } from "./action-factory";
 
 /**
- * A class to base action creators on.
- * Provides methods to easily dispatch events
+ * Base class for providing the action creator behavior.
  */
 export abstract class ActionCreator {
 
