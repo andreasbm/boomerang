@@ -1,11 +1,26 @@
 import { IEntity } from "./ientity";
 
-function sleep (ms: number = 500): Promise<void> {
+const chanceOfFailing = 0.2;
+const maxSleepDuration = 500;
+const maxId = 10000;
+
+/**
+ * Simulates a the time it takes to speak with the server.
+ * @param {number} ms
+ * @returns {Promise<void>}
+ */
+function sleep (ms?: number): Promise<void> {
+	if (ms == null) {
+		ms = Math.random() * maxSleepDuration;
+	}
 	return new Promise<void>((res, rej) => {
 		setTimeout(res, ms);
 	});
 }
 
+/**
+ * API that simulates talking with the server.
+ */
 export class API {
 
 	private entities = [
@@ -36,18 +51,28 @@ export class API {
 	}
 
 	/**
-	 * Returns an entity with the given ID.
+	 * Returns the entity with a given ID.
 	 * @returns {Promise<IEntity>}
 	 */
-	async getEntity (id: number): Promise<IEntity | null> {
+	async getEntity (id: number): Promise<IEntity> {
 		await sleep();
-		return this.entities.find(entity => entity.id === id);
+		const match = this.entities.find(entity => entity.id === id);
+
+		if (match != null) {
+			return match;
+		}
+
+		throw new Error(`Entity with the ID '${id}' does not exist.`);
 	}
 
+	/**
+	 * Creates a new entity.
+	 * @returns {Promise<IEntity>}
+	 */
 	async createEntity (): Promise<IEntity> {
 		await sleep();
-		if (1 === Math.round(Math.random() * 3)) throw new Error("It failed!");
-		const id = Math.floor(Math.random() * /*tslint:disable:no-magic-numbers*/10000/*tslint:enable:no-magic-numbers*/);
+		if (Math.random() > 1 - chanceOfFailing) throw new Error("It failed!");
+		const id = Math.floor(Math.random() * maxId);
 		const entity = {
 			id: id,
 			title: `Entity with id ${id}`,

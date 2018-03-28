@@ -11,7 +11,7 @@ export class EntityActionCreator extends ActionCreator {
 	getEntities () {
 		this.tryCatch(EntityAction.getEntities, async () => {
 			return await this.api.getEntities();
-		}, {metadata: "hello"});
+		}, {message: "hello"});
 	}
 
 	createEntity () {

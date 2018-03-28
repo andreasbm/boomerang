@@ -8,6 +8,6 @@ export class DetailActionCreator extends ActionCreator {
 	}
 
 	getEntity (id: number) {
-		this.tryCatch(DetailAction.getEntity, () => this.api.getEntity(id));
+		this.tryCatch(DetailAction.getEntity, () => this.api.getEntity(id), id);
 	}
 }

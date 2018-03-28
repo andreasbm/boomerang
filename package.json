@@ -1,5 +1,5 @@
 {
-	"name": "@appnest/web-state",
+	"name": "@appnest/state",
 	"version": "0.0.0",
 	"scripts": {
 		"b:dev": "webpack --mode=development --config src/demo/webpack.config.js",

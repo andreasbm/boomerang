@@ -8,30 +8,39 @@ import { DetailStore, DetailStoreEventKind, IDetailStoreEvent } from "./overview
 export default class DetailComponent extends LitElement implements IPage {
 
 	parentRouter: Router;
-
 	private entity: IEntity | null;
 
 	constructor (private detailStore = new DetailStore(), private detailActionCreator = new DetailActionCreator(Container.instance.api)) {
 		super();
-
 		this.detailStoreListener = this.detailStoreListener.bind(this);
-
 	}
 
+	/**
+	 * When connected, hook up listener to the store and fetch the entity.
+	 */
 	connectedCallback () {
 		super.connectedCallback();
 		this.detailStore.addListener(this.detailStoreListener);
 
+		// Fetch the entity based on the ID on the path.
 		const pathAtoms = Router.currentPath.match(/detail\/(\d*)/);
 		const id = pathAtoms.length > 0 ? Number(pathAtoms[1]) : -1;
 		this.detailActionCreator.getEntity(id);
 	}
 
+	/**
+	 * Handles events dispatched from the detail store.
+	 * @param {IDetailStoreEvent} e
+	 */
 	private detailStoreListener (e: IDetailStoreEvent) {
 		switch (e.kind) {
 			case DetailStoreEventKind.getEntity:
 				this.entity = e.data;
 				break;
+			case DetailStoreEventKind.getEntityFailed:
+				alert(e.data);
+				Router.replaceState(null, null, "");
+				return;
 		}
 
 		this.invalidate();

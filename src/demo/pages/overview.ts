@@ -7,23 +7,27 @@ import { EntityStoreEventKind, IEntityStoreEvent } from "../entity/entity.store"
 export default class OverviewComponent extends LitElement implements IPage {
 
 	parentRouter: Router;
-
 	private isLoading = false;
 
 	constructor (private entityActionCreator = Container.instance.entityActionCreator,
 							 private entityStore = Container.instance.entityStore) {
 		super();
-
 		this.entityStoreListener = this.entityStoreListener.bind(this);
 	}
 
+	/**
+	 * When connected, fetch the entities and add a store listener.
+	 */
 	connectedCallback () {
 		super.connectedCallback();
-		this.entityActionCreator.getEntities();
-
 		this.entityStore.addListener(this.entityStoreListener);
+		this.entityActionCreator.getEntities();
 	}
 
+	/**
+	 * Handles events from the entity store.
+	 * @param {IEntityStoreEvent} e
+	 */
 	private entityStoreListener (e: IEntityStoreEvent) {
 		switch (e.kind) {
 			case EntityStoreEventKind.entitiesChanged:
@@ -44,10 +48,16 @@ export default class OverviewComponent extends LitElement implements IPage {
 		this.invalidate();
 	}
 
+	/**
+	 * Removes the listener from the entity store.
+	 */
 	disconnectedCallback () {
 		this.entityStore.removeListener(this.entityStoreListener);
 	}
 
+	/**
+	 * Creates a new entity.
+	 */
 	private createEntity () {
 		this.entityActionCreator.createEntity();
 	}
@@ -57,7 +67,7 @@ export default class OverviewComponent extends LitElement implements IPage {
 <h2>Overview</h2>
 <button on-click="${_ => this.createEntity()}">Create entity</button>
 ${repeat(this.entityStore.entities, entity => entity.id, entity => html`
-	<router-link path="detail/${entity.id}"><p>${entity.title}</p></router-link>
+	<router-link path="detail/${entity.id}" style="cursor: pointer;"><p>${entity.title}</p></router-link>
 `)}
 ${this.isLoading ? "Loading..." : ""}
 		`;

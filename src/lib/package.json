@@ -1,15 +1,15 @@
 {
-	"name": "@appnest/web-state",
+	"name": "@appnest/state",
 	"version": "0.0.3",
-	"description": "Simple state management for the web.",
+	"description": "A simple flux-inspired state management library.",
 	"author": "Appnest",
 	"bugs": {
-		"url": "https://github.com/andreasbm/web-state/issues"
+		"url": "https://github.com/andreasbm/state/issues"
 	},
-	"homepage": "https://github.com/andreasbm/web-state#readme",
+	"homepage": "https://github.com/andreasbm/state#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/andreasbm/web-state.git"
+		"url": "git+https://github.com/andreasbm/state.git"
 	},
 	"keywords": [
 		"webapp",
