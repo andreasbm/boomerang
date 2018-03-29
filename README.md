@@ -4,6 +4,8 @@
 
 A simple flux-inspired state management library.
 
+If you want to brush up your flux skills I can recommend [this](https://blog.andrewray.me/flux-for-stupid-people/) article.
+
 ## Benefits
 
 - Typesafe
