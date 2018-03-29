@@ -3,14 +3,12 @@ const tsc = require("node-typescript-compiler");
 const tsconfig = {json: require("./tsconfig.json")};
 const path = require("path");
 const fs = require("fs-extra");
-const npmBump = require("npm-bump");
 
 const outLib = "dist";
 
 async function deploy () {
 	await cleanLib();
 	await compile();
-	// bump();
 	copySync("./src/lib/package.json", `./${outLib}/package.json`);
 	copySync("./README.md", `./${outLib}/README.md`);
 }
@@ -46,10 +44,6 @@ function copyFiles (files) {
 
 function copySync (src, dest) {
 	fs.copySync(path.resolve(__dirname, src), path.resolve(__dirname, dest));
-}
-
-function bump () {
-	npmBump("patch");
 }
 
 deploy().then(_ => {

@@ -1,4 +1,4 @@
-import { IAction } from "../";
+import { IAction } from "../action/iaction";
 import { Dispatcher } from "../dispatcher/dispatcher";
 import { Subject } from "../subject";
 

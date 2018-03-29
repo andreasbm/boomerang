@@ -1,4 +1,4 @@
-import { Dispatcher } from "../";
+import { Dispatcher } from "../dispatcher/dispatcher";
 import { IAsyncActionFactory, IDefaultAsyncActionFactory } from "./action-factory";
 
 /**

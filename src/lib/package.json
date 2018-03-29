@@ -1,6 +1,6 @@
 {
 	"name": "@appnest/boomerang",
-	"version": "0.0.3",
+	"version": "0.0.0",
 	"description": "A simple flux-inspired state management library.",
 	"author": "Appnest",
 	"bugs": {
