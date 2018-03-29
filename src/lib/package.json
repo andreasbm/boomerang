@@ -1,15 +1,15 @@
 {
-	"name": "@appnest/orbit",
+	"name": "@appnest/boomerang",
 	"version": "0.0.3",
 	"description": "A simple flux-inspired state management library.",
 	"author": "Appnest",
 	"bugs": {
-		"url": "https://github.com/andreasbm/orbit/issues"
+		"url": "https://github.com/andreasbm/boomerang/issues"
 	},
-	"homepage": "https://github.com/andreasbm/orbit#readme",
+	"homepage": "https://github.com/andreasbm/boomerang#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/andreasbm/orbit.git"
+		"url": "git+https://github.com/andreasbm/boomerang.git"
 	},
 	"keywords": [
 		"webapp",
