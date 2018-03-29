@@ -1,15 +1,15 @@
 {
-	"name": "@appnest/state",
+	"name": "@appnest/orbit",
 	"version": "0.0.3",
 	"description": "A simple flux-inspired state management library.",
 	"author": "Appnest",
 	"bugs": {
-		"url": "https://github.com/andreasbm/state/issues"
+		"url": "https://github.com/andreasbm/orbit/issues"
 	},
-	"homepage": "https://github.com/andreasbm/state#readme",
+	"homepage": "https://github.com/andreasbm/orbit#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/andreasbm/state.git"
+		"url": "git+https://github.com/andreasbm/orbit.git"
 	},
 	"keywords": [
 		"webapp",
@@ -17,7 +17,12 @@
 		"elements",
 		"web",
 		"component",
+		"flux",
 		"state",
+		"subject",
+		"store",
+		"action",
+		"creator",
 		"events"
 	],
 	"license": "MIT"

@@ -1,4 +1,4 @@
-# @appnest/state
+# @appnest/orbit
 
 ## 🧐 What is this?
 
@@ -14,7 +14,7 @@ If you want to brush up your flux skills I can recommend [this](https://blog.and
 ## 👌 Step 1 - Install the dependency
 
 ```javascript
-npm i @appnest/state --save
+npm i @appnest/orbit --save
 ```
 
 ## 👊 Step 2 - Create the actions

@@ -1,5 +1,5 @@
 {
-	"name": "@appnest/state",
+	"name": "@appnest/orbit",
 	"version": "0.0.0",
 	"scripts": {
 		"b:dev": "webpack --mode=development --config src/demo/webpack.config.js",
