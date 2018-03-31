@@ -46,7 +46,7 @@ Dispatcher.instance.dispatch(EntityAction.getEntities.success(data, null));
 
 ```
 
-This works,but it would quickly get very repetitious to type if many of your views need to dispatch this action. Also, all of your views would need to know the specific action which is not optimal. In flux we are recommended to use an abstraction, called action creators, which just abstracts the above into a function.
+This works, but it would quickly get very repetitious to type if many of your views need to dispatch the same actions. Also, all of your views would need to know the specific actions which is not optimal. In flux we are recommended to use an abstraction, called action creators, which abstracts the above into functions.
 
 Action creators should extend the `ActionCreator` class for easier dispatching of events. Here's an example of the above turned into an action creator.
 
