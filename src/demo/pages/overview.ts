@@ -1,4 +1,4 @@
-import { IPage, Router } from "@appnest/web-router";
+import { IPage, RouterComponent } from "@appnest/web-router";
 import { repeat } from "lit-html/lib/repeat";
 import { html, LitElement, TemplateResult } from "../base";
 import { Container } from "../container";
@@ -6,7 +6,7 @@ import { EntityStoreEventKind, IEntityStoreEvent } from "../entity/entity.store"
 
 export default class OverviewComponent extends LitElement implements IPage {
 
-	parentRouter: Router;
+	parentRouter: RouterComponent;
 	private isLoading = false;
 
 	constructor (private entityActionCreator = Container.instance.entityActionCreator,

@@ -1,4 +1,4 @@
-import { IPage, Router } from "@appnest/web-router";
+import { IPage, Router, RouterComponent } from "@appnest/web-router";
 import { html, LitElement, TemplateResult } from "../base";
 import { Container } from "../container";
 import { IEntity } from "../ientity";
@@ -7,7 +7,7 @@ import { DetailStore, DetailStoreEventKind, IDetailStoreEvent } from "./overview
 
 export default class DetailComponent extends LitElement implements IPage {
 
-	parentRouter: Router;
+	parentRouter: RouterComponent;
 	private entity: IEntity | null;
 
 	constructor (private detailStore = new DetailStore(), private detailActionCreator = new DetailActionCreator(Container.instance.api)) {

@@ -1,17 +1,18 @@
 import "@appnest/web-router";
-import { Router } from "@appnest/web-router";
+import { RouterComponent } from "@appnest/web-router";
 
 // Setup the router
 customElements.whenDefined("router-component").then(async () => {
-	const router: Router = document.querySelector("router-component");
+	const router: RouterComponent = document.querySelector("router-component");
+	console.log(router);
 	await router.setup([
 		{
 			path: new RegExp("/detail.*"),
-			loader: import("./pages/detail")
+			component: import("./pages/detail")
 		},
 		{
 			path: new RegExp("/overview.*"),
-			loader: import("./pages/overview")
+			component: import("./pages/overview")
 		},
 		{
 			path: new RegExp(".*"),
