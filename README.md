@@ -1,5 +1,11 @@
 # @appnest/boomerang
 
+<a href="https://npmcharts.com/compare/@appnest/boomerang?minimal=true"><img alt="Downloads per month" src="https://img.shields.io/npm/dm/@appnest/boomerang.svg" height="20"></img></a>
+<a href="https://david-dm.org/andreasbm/boomerang"><img alt="Dependencies" src="https://img.shields.io/david/andreasbm/boomerang.svg" height="20"></img></a>
+<a href="https://www.npmjs.com/package/@appnest/boomerang"><img alt="NPM Version" src="https://img.shields.io/npm/v/@appnest/boomerang.svg" height="20"></img></a>
+<a href="https://github.com/andreasbm/boomerang/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/andreasbm/boomerang.svg" height="20"></img></a>
+<a href="https://opensource.org/licenses/MIT"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-yellow.svg" height="20"></img></a>
+
 ## 🧐 What is this?
 
 A simple flux-inspired state management library.

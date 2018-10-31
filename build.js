@@ -9,7 +9,7 @@ const outLib = "dist";
 async function deploy () {
 	await cleanLib();
 	await compile();
-	copySync("./src/lib/package.json", `./${outLib}/package.json`);
+	copySync("./package.json", `./${outLib}/package.json`);
 	copySync("./README.md", `./${outLib}/README.md`);
 }
 

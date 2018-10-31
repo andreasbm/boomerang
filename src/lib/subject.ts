@@ -1,4 +1,6 @@
-export declare type SubjectCallback<T> = (T) => void;
+// tslint:disable:no-any
+// @ts-ignore
+export type SubjectCallback<T> = (T) => void;
 
 /**
  * Allows observers to subscribe and unsubscribe to events and allows other entities to dispatch them.

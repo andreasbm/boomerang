@@ -1,5 +1,6 @@
 import { IPage, Router, RouterComponent } from "@appnest/web-router";
-import { html, LitElement, TemplateResult } from "../base";
+import { html, LitElement } from "@polymer/lit-element";
+import { TemplateResult } from "lit-html";
 import { Container } from "../container";
 import { IEntity } from "../ientity";
 import { DetailActionCreator } from "./overview/detail.action-creator";
@@ -23,7 +24,7 @@ export default class DetailComponent extends LitElement implements IPage {
 		this.detailStore.addListener(this.detailStoreListener);
 
 		// Fetch the entity based on the ID on the path.
-		const pathAtoms = Router.currentPath.match(/detail\/(\d*)/);
+		const pathAtoms = Router.currentPath.match(/detail\/(\d*)/)!;
 		const id = pathAtoms.length > 0 ? Number(pathAtoms[1]) : -1;
 		this.detailActionCreator.getEntity(id);
 	}
@@ -43,7 +44,7 @@ export default class DetailComponent extends LitElement implements IPage {
 				return;
 		}
 
-		this.invalidate();
+		this.requestUpdate().then();
 	}
 
 	render (): TemplateResult {

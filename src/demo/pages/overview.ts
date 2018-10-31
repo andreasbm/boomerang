@@ -1,6 +1,7 @@
 import { IPage, RouterComponent } from "@appnest/web-router";
-import { repeat } from "lit-html/lib/repeat";
-import { html, LitElement, TemplateResult } from "../base";
+import { html, LitElement } from "@polymer/lit-element";
+import { TemplateResult } from "lit-html";
+import { repeat } from "lit-html/directives/repeat";
 import { Container } from "../container";
 import { EntityStoreEventKind, IEntityStoreEvent } from "../entity/entity.store";
 
@@ -45,7 +46,7 @@ export default class OverviewComponent extends LitElement implements IPage {
 				break;
 		}
 
-		this.invalidate();
+		this.requestUpdate().then();
 	}
 
 	/**
@@ -65,7 +66,7 @@ export default class OverviewComponent extends LitElement implements IPage {
 	render (): TemplateResult {
 		return html`
 <h2>Overview</h2>
-<button on-click="${_ => this.createEntity()}">Create entity</button>
+<button @click="${() => this.createEntity()}">Create entity</button>
 ${repeat(this.entityStore.entities, entity => entity.id, entity => html`
 	<router-link path="detail/${entity.id}" style="cursor: pointer;"><p>${entity.title}</p></router-link>
 `)}
